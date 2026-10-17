@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            background-color: black;
+        }
+
+        div {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* border: 1px solid red; */
+            margin-top: 40px;
+            height: 200px;
+            width: 400px;
+            color: #38bdf8;
+            border-radius: 55px;
+            box-shadow: 0 0 25px greenyellow;
+        }
+
+        #h2 {
+            padding-bottom: 0;
+            margin-bottom: 0;
+            color: greenyellow;
+        }
+
+        .date {
+            color: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2 id="h2">Digital Clock</h2>
+        <h1 class="digital-clock">00:00:00</h1>
+        <p class="date"></p>
+    </div>
+    <script>
+
+
+        function updateClock() {
+            const now = new Date();
+
+            var hours = now.getHours().toString().padStart(2, 0);
+
+            const AB = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12;
+
+
+            var minutes = now.getMinutes().toString().padStart(2, 0)
+            var seconds = now.getSeconds().toString().padStart(2, 0);
+
+            const clock = document.querySelector('.digital-clock');
+            clock.textContent = `${hours}:${minutes}:${seconds} ${AB}`;
+
+            let year = now.getFullYear();
+            let months = now.getMonth();
+            let day = now.getDay();
+            let fullYear = `${year}/${months}/${day}`;
+
+            document.querySelector('.date').textContent = fullYear;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+    </script>
+
+
+</body>
+
+</html>
